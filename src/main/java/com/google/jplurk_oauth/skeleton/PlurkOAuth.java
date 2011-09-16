@@ -19,7 +19,7 @@ public class PlurkOAuth {
     private static Log log = LogFactory.getLog(PlurkOAuth.class);
 
     @SuppressWarnings("serial")
-    static Map<HttpMethod, Verb> actionMap = new HashMap<HttpMethod, Verb>() {
+    private static Map<HttpMethod, Verb> actionMap = new HashMap<HttpMethod, Verb>() {
         {
             put(HttpMethod.DELETE, Verb.DELETE);
             put(HttpMethod.GET, Verb.GET);
@@ -28,15 +28,18 @@ public class PlurkOAuth {
         }
     };
     
+    @SuppressWarnings("rawtypes")
+    private static Map<Class, Object> cachedModule = new HashMap<Class, Object>();
+    
     private OAuthService service;
     private Token token;
 
-    public PlurkOAuth(String apiKey, String apiSecret, String token, String tokenSecret) {
+    public PlurkOAuth(String appKey, String appSecret, String token, String tokenSecret) {
         super();
         this.service = new ServiceBuilder()
             .provider(PlurkOAuthConfig.class)
-            .apiKey(apiKey)
-            .apiSecret(apiSecret).build();
+            .apiKey(appKey)
+            .apiSecret(appSecret).build();
         this.token = new Token(token, tokenSecret);
     }
 
@@ -74,12 +77,17 @@ public class PlurkOAuth {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T using(Class<T> clazz) {
         try {
+            if (cachedModule.containsKey(clazz) && cachedModule.get(clazz) != null) {
+                return (T) cachedModule.get(clazz);
+            }
             T instance = clazz.newInstance();
             if (instance instanceof AbstractModule) {
                 AbstractModule module = (AbstractModule) instance;
                 module.setPlurkOAuth(this);
+                cachedModule.put(clazz, instance);
                 return instance;
             }
         } catch (InstantiationException e) {
