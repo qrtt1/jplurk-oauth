@@ -1,6 +1,6 @@
 package com.google.jplurk_oauth.module;
 
-import java.io.File;
+
 
 import org.json.JSONObject;
 
@@ -107,9 +107,10 @@ public class Timeline extends AbstractModule {
             .in(HttpMethod.GET).thenJsonObject();
     }
     
-    public JSONObject uploadPicture(File file) throws RequestException {
-        /* TODO ... */
-        throw new UnsupportedOperationException();
+    public JSONObject uploadPicture(String file) throws RequestException {
+    	 return requestBy("uploadPicture")
+    	            .with(new Args().add("image", file))
+    	            .in(HttpMethod.POST).thenJsonObject();
     }
 
     

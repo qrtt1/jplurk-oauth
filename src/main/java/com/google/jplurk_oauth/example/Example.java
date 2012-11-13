@@ -17,5 +17,7 @@ public class Example {
                 prop.getProperty("token"), prop.getProperty("tokensecret"));
         
         auth.using(Timeline.class).plurkAdd("嗯，將 apikey 改成 appkey 似乎比較恰當。", Qualifier.SAYS);
+		
+        //System.out.println(auth.using(Timeline.class).uploadPicture("e:/image.jpg"));
     }
 }
