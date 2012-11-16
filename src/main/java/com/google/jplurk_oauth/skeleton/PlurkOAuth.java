@@ -1,14 +1,11 @@
 package com.google.jplurk_oauth.skeleton;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.multipart.FilePart;
 import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
@@ -56,26 +53,26 @@ public class PlurkOAuth {
     public String sendRequest(String url, Args args, HttpMethod method) throws RequestException {
         OAuthRequest request = new OAuthRequest(actionMap.get(method), url);
         log.info("args: " + args.map);
-        if(HttpMethod.POST.equals(method) || HttpMethod.PUT.equals(method))
-        {
-        	if(args.getMap().get("image")!=null){
+        if (HttpMethod.POST.equals(method) || HttpMethod.PUT.equals(method)) {
+            if (args.getMap().containsKey("image")) {
                 service.signRequest(token, request);
-        		File file = new File(args.getMap().get("image"));
-        		return this.uploadFile(request, file);
-        	}else{
-        		addBodyParams(request, args);
-        	}
-        }
-        else
-        {
+                File file = new File(args.getMap().get("image"));
+                if (!file.exists() || !file.isFile()) {
+                    throw new RequestException(" invalid file: " + file);
+                }
+                return uploadFile(request, file);
+            } else {
+                addBodyParams(request, args);
+            }
+        } else {
             addQueryStrings(request, args);
         }
-        
+
         service.signRequest(token, request);
         Response response = request.send();
-        if(response.getCode() != 200)
-        {
-            throw new RequestException(String.format("http status %d, body: %s", response.getCode(), response.getBody()));
+        if (response.getCode() != 200) {
+            throw new RequestException(
+                    String.format("http status %d, body: %s", response.getCode(), response.getBody()));
         }
         return response.getBody();
     }
@@ -114,32 +111,29 @@ public class PlurkOAuth {
         return null;
     }
     
-    private String uploadFile(OAuthRequest request,File file) {
-        HttpClient hc = new HttpClient();
-        Map<String, String> querystringParams = request.getOauthParameters();
-        String url = URLUtils.appendParametersToQueryString(request.getUrl(), querystringParams);
+    private String uploadFile(OAuthRequest request, File file) throws RequestException {
+        HttpClient httpClient = new HttpClient();
+        Map<String, String> params = request.getOauthParameters();
+        String url = URLUtils.appendParametersToQueryString(request.getUrl(), params);
         PostMethod post = new PostMethod(url);
-        String responseString = null;
+        String body = null;
         try {
-            FilePart filePart = new FilePart("image", file.getName(), file, "image/png", "UTF-8");
+            FilePart filePart = new FilePart("image", file.getName(), file, "binary/octet-stream", "UTF-8");
             filePart.setTransferEncoding("binary");
             Part[] parts = new Part[] { filePart };
             post.setRequestEntity(new MultipartRequestEntity(parts, post.getParams()));
-            int responseCode = hc.executeMethod(post);
+            int responseCode = httpClient.executeMethod(post);
             if (responseCode == 200) {
-                responseString = post.getResponseBodyAsString();
-            } else{
+                body = post.getResponseBodyAsString();
+            } else {
+                throw new RequestException("upload-file is failed: " + post.getResponseBodyAsString());
             }
-        } catch (FileNotFoundException fe) {
-        	fe.printStackTrace();
-        } catch (HttpException he) {
-        	he.printStackTrace();
-        } catch (IOException ioe) {
-        	ioe.printStackTrace();
+        } catch (Exception e) {
+            throw new RequestException(e);
         } finally {
             post.releaseConnection();
         }
-        return responseString;
+        return body;
     }
 
 }
