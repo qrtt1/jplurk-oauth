@@ -15,4 +15,8 @@ public abstract class AbstractModule {
     protected RequestBuilder requestBy(String url) {
         return new RequestBuilder(plurkOAuth, API_URL_PREFIX + getModulePath() + "/" + url);
     }
+    
+    protected RequestBuilder requestSpecificURL(String url, Args args) {
+    	return new RequestBuilder(plurkOAuth, url).with(args);
+    }
 }
