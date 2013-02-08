@@ -23,6 +23,16 @@ public class Timeline extends AbstractModule {
             .in(HttpMethod.GET).thenJsonObject();
     }
     
+    public JSONObject getPlurks() throws RequestException {
+    	return getPlurks(null);
+    }
+    
+    public JSONObject getPlurks(Args optional) throws RequestException {
+        return requestBy("getPlurks")
+            .with(new Args().add(optional))
+            .in(HttpMethod.GET).thenJsonObject();
+    }
+    
     public JSONObject getUnreadPlurks() throws RequestException {
         return getUnreadPlurks(null);
     }

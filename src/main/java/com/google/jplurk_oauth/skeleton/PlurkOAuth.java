@@ -60,8 +60,16 @@ public class PlurkOAuth {
                 if (!file.exists() || !file.isFile()) {
                     throw new RequestException(" invalid file: " + file);
                 }
-                return uploadFile(request, file);
-            } else {
+                return uploadFile(request, "image", file);
+            } else if (args.getMap().containsKey("profile_image")) {
+                service.signRequest(token, request);
+                File file = new File(args.getMap().get("profile_image"));
+                if (!file.exists() || !file.isFile()) {
+                    throw new RequestException(" invalid file: " + file);
+                }
+                return uploadFile(request, "profile_image", file);
+            }
+            else {
                 addBodyParams(request, args);
             }
         } else {
@@ -111,14 +119,14 @@ public class PlurkOAuth {
         return null;
     }
     
-    private String uploadFile(OAuthRequest request, File file) throws RequestException {
+    private String uploadFile(OAuthRequest request, String parameterName, File file) throws RequestException {
         HttpClient httpClient = new HttpClient();
         Map<String, String> params = request.getOauthParameters();
         String url = URLUtils.appendParametersToQueryString(request.getUrl(), params);
         PostMethod post = new PostMethod(url);
         String body = null;
         try {
-            FilePart filePart = new FilePart("image", file.getName(), file, "binary/octet-stream", "UTF-8");
+            FilePart filePart = new FilePart(parameterName, file.getName(), file, "binary/octet-stream", "UTF-8");
             filePart.setTransferEncoding("binary");
             Part[] parts = new Part[] { filePart };
             post.setRequestEntity(new MultipartRequestEntity(parts, post.getParams()));
