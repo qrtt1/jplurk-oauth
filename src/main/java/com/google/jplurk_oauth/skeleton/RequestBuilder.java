@@ -46,6 +46,15 @@ public class RequestBuilder {
         }
        
     }
+    
+    public String thenStringObject() throws RequestException {
+        try {
+            return result();
+        } catch (Exception e) {
+            throw new RequestException(e);
+        }
+       
+    }
 
     public RequestBuilder withoutArgs() {
         return with(new Args());
