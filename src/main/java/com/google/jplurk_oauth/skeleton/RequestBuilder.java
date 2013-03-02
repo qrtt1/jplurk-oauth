@@ -24,8 +24,11 @@ public class RequestBuilder {
     }
 
     protected String result() throws RequestException {
-        validate();
-        return auth.sendRequest(url, args, method);
+    	validate();
+    	String result = auth.sendRequest(url, args, method);
+    	if (log.isDebugEnabled())
+    		log.debug(String.format("Result: %s", result));
+    	return result;
     }
 
     public boolean validate() {
@@ -45,7 +48,6 @@ public class RequestBuilder {
         } catch (Exception e) {
             throw new RequestException(e);
         }
-       
     }
     
     public JSONArray thenJsonArray() throws RequestException {
@@ -54,7 +56,6 @@ public class RequestBuilder {
         } catch (Exception e) {
             throw new RequestException(e);
         }
-       
     }
     
     public String thenStringObject() throws RequestException {
@@ -63,7 +64,6 @@ public class RequestBuilder {
         } catch (Exception e) {
             throw new RequestException(e);
         }
-       
     }
 
     public RequestBuilder withoutArgs() {
