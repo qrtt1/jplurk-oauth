@@ -14,10 +14,6 @@ public class Polling extends AbstractModule {
 	 * You should use this call to find out if there any new plurks posted to the user's timeline.
 	 * <p>It's much more efficient than doing it with /APP/Timeline/getPlurks, so please use it :)</p>
      * @param offset Return plurks newer than offset, formatted as 2009-6-20T21:55:34.
-     * <ul>
-     * <li>limit: The max number of plurks to be returned (default: 20)</li>
-     * <li>favorers_detail, limited_detail and replurkers_detail: See /APP/Timline/getPlurks for details</li>
-	 * </ul>
      * @return Returns a JSON object of plurks and their users, e.g. <code>{"plurks": [{"plurk_id": 3, "content": "Test", "qualifier_translated": "says", "qualifier": "says", "lang": "en" ...}, ...], "plurk_users": {"3": {"id": 3, "nick_name": "alvin", ...}}</code>
      * @throws RequestException
      */
@@ -33,7 +29,7 @@ public class Polling extends AbstractModule {
      * <ul>
      * <li>limit: The max number of plurks to be returned (default: 20)</li>
      * <li>favorers_detail, limited_detail and replurkers_detail: See /APP/Timline/getPlurks for details</li>
-	 * </ul>
+     * </ul>
      * @return Returns a JSON object of plurks and their users, e.g. <code>{"plurks": [{"plurk_id": 3, "content": "Test", "qualifier_translated": "says", "qualifier": "says", "lang": "en" ...}, ...], "plurk_users": {"3": {"id": 3, "nick_name": "alvin", ...}}</code>
      * @throws RequestException
      */
