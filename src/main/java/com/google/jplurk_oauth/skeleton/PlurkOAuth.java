@@ -52,7 +52,7 @@ public class PlurkOAuth {
 
     public String sendRequest(String url, Args args, HttpMethod method) throws RequestException {
         OAuthRequest request = new OAuthRequest(actionMap.get(method), url);
-        log.info("args: " + args.map);
+        log.info(String.format("%1$s %2$s\t%3$s", method, url, args.map));
         if (HttpMethod.POST.equals(method) || HttpMethod.PUT.equals(method)) {
             if (args.getMap().containsKey("image")) {
                 service.signRequest(token, request);
