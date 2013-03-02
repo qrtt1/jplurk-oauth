@@ -72,7 +72,7 @@ public class PlurkTop extends AbstractModule {
      * <li>limit: number of plurks returned (default: 30)</li>
      * <li>sorting: the way to sort plurks in PlurkTop, can be "hot" for sorting by popularity or "new" for posted time.</li>
      * <li>topic_filter: only show topic with this id (default: null)</li>
-     * <ul>
+     * </ul>
      * @return
      * @throws RequestException
      */
