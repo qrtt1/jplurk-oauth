@@ -15,9 +15,9 @@ import com.google.jplurk_oauth.skeleton.RequestException;
 public class Search extends AbstractModule {
     
     /**
-     * NOTE: It doesn't work now.
-     * /APP/PlurkSearch/search
-     * Returns the latest 20 plurks on a search term.
+     * /APP/PlurkSearch/search .
+     * <p>NOTE: It doesn't work now.</p>
+     * <p>Returns the latest 20 plurks on a search term.</p>
      * @param query The query after Plurks.
      * @return A JSON list of plurks that the user have permissions to see: [{"id": 3, "content": "Test", "qualifier_translated": "says", "qualifier": "says", ...}, ...]
      * @throws RequestException
@@ -27,9 +27,9 @@ public class Search extends AbstractModule {
     }
 
     /**
-     * NOTE: It doesn't work now.
-     * /APP/PlurkSearch/search
-     * Returns the latest 20 plurks on a search term.
+     * /APP/PlurkSearch/search .
+     * <p>NOTE: It doesn't work now.</p>
+     * <p>Returns the latest 20 plurks on a search term.</p>
      * @param query The query after Plurks.
      * @param optional offset: A plurk_id of the oldest Plurk in the last search result.
      * @return A JSON list of plurks that the user have permissions to see: [{"id": 3, "content": "Test", "qualifier_translated": "says", "qualifier": "says", ...}, ...]
@@ -42,9 +42,9 @@ public class Search extends AbstractModule {
     }
 	
     /**
-     * NOTE: The return description said the return is JSON list, but actually it is JSON Object.  
-     * /APP/UserSearch/search
-     * Returns 10 users that match query, users are sorted by karma.
+     * /APP/UserSearch/search .
+     * <p>NOTE: The return description said the return is JSON list, but actually it is JSON Object.</p>  
+     * <p>Returns 10 users that match query, users are sorted by karma.</p>
      * @param query The query after users.
      * @return A JSON Object
      * @throws RequestException
@@ -54,9 +54,9 @@ public class Search extends AbstractModule {
     }
 
     /**
-     * NOTE: The return description said the return is JSON list, but actually it is JSON Object.
-     * /APP/UserSearch/search
-     * Returns 10 users that match query, users are sorted by karma.
+     * /APP/UserSearch/search .
+     * <p>NOTE: The return description said the return is JSON list, but actually it is JSON Object.</p> 
+     * <p>Returns 10 users that match query, users are sorted by karma.</p>
      * @param query The query after users.
      * @param optional offset: Page offset, like 10, 20, 30 etc.
      * @return A JSON Object

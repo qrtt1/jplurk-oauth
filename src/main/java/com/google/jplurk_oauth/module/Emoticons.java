@@ -9,8 +9,8 @@ import com.google.jplurk_oauth.skeleton.RequestException;
 public class Emoticons extends AbstractModule {
     
     /**
-     * /APP/Emoticons/get
-     * Emoticons are a big part of Plurk since they make it easy to express feelings. Check out current Plurk emoticons.
+     * /APP/Emoticons/get .
+     * <p>Emoticons are a big part of Plurk since they make it easy to express feelings. Check out current Plurk emoticons.<p>
      * @return a JSON object.
      * @throws RequestException
      */

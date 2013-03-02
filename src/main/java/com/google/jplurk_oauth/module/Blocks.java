@@ -10,18 +10,18 @@ import com.google.jplurk_oauth.skeleton.RequestException;
 public class Blocks extends AbstractModule {
     
 	/**
-	 * /APP/Blocks/get
-	 * @return
-	 * @throws RequestException
+	 * /APP/Blocks/get .
+	 * @return A JSON list of users that are blocked by the current user, e.g. <code>{"total": 12, "users": {"display_name": "amix3", "gender": 0, "nick_name": "amix", "has_profile_image": 1, "id": 1, "avatar": null}, ...]}</code>
+     * @throws RequestException
 	 */
 	public JSONObject get() throws RequestException {
 		return get(null);
 	}
 	
     /**
-     * /APP/Blocks/get
+     * /APP/Blocks/get .
      * @param optional offset: What page should be shown, e.g. 0, 10, 20.
-     * @return A JSON list of users that are blocked by the current user, e.g. {"total": 12, "users": {"display_name": "amix3", "gender": 0, "nick_name": "amix", "has_profile_image": 1, "id": 1, "avatar": null}, ...]}
+     * @return A JSON list of users that are blocked by the current user, e.g. <code>{"total": 12, "users": {"display_name": "amix3", "gender": 0, "nick_name": "amix", "has_profile_image": 1, "id": 1, "avatar": null}, ...]}</code>
      * @throws RequestException
      */
     public JSONObject get(Args optional) throws RequestException {
@@ -31,9 +31,9 @@ public class Blocks extends AbstractModule {
     }
 
     /**
-     * /APP/Blocks/block
+     * /APP/Blocks/block .
      * @param user_id The id of the user that should be blocked.
-     * @return {"success_text": "ok"}
+     * @return <code>{"success_text": "ok"}</code>
      * @throws RequestException
      */
     public JSONObject block(String user_id) throws RequestException {
@@ -43,9 +43,9 @@ public class Blocks extends AbstractModule {
     }
 	
     /**
-     * /APP/Blocks/unblock
+     * /APP/Blocks/unblock .
      * @param user_id The id of the user that should be unblocked.
-     * @return {"success_text": "ok"}
+     * @return <code>{"success_text": "ok"}</code>
      * @throws RequestException
      */
     public JSONObject unblock(String user_id) throws RequestException {
