@@ -23,9 +23,7 @@ public class Search extends AbstractModule {
      * @throws RequestException
      */
     public JSONArray plurkSearch(String query) throws RequestException {
-        return requestBy("PlurkSearch/search")
-        	.with(new Args().add("query", query))
-        	.in(HttpMethod.GET).thenJsonArray();
+        return plurkSearch(query, null);
     }
 
     /**
@@ -33,13 +31,13 @@ public class Search extends AbstractModule {
      * /APP/PlurkSearch/search
      * Returns the latest 20 plurks on a search term.
      * @param query The query after Plurks.
-     * @param offset A plurk_id of the oldest Plurk in the last search result.
+     * @param optional offset: A plurk_id of the oldest Plurk in the last search result.
      * @return A JSON list of plurks that the user have permissions to see: [{"id": 3, "content": "Test", "qualifier_translated": "says", "qualifier": "says", ...}, ...]
      * @throws RequestException
      */
-    public JSONArray plurkSearch(String query, String offset) throws RequestException {
+    public JSONArray plurkSearch(String query, Args optional) throws RequestException {
         return requestBy("PlurkSearch/search")
-        	.with(new Args().add("query", query).add("offset", offset))
+        	.with(new Args().add("query", query).add(optional))
         	.in(HttpMethod.GET).thenJsonArray();
     }
 	
@@ -52,7 +50,7 @@ public class Search extends AbstractModule {
      * @throws RequestException
      */
     public JSONObject userSearch(String query) throws RequestException {
-        return userSearch(query, new Integer(0));
+        return userSearch(query, null);
     }
 
     /**
@@ -60,13 +58,13 @@ public class Search extends AbstractModule {
      * /APP/UserSearch/search
      * Returns 10 users that match query, users are sorted by karma.
      * @param query The query after users.
-     * @param offset Page offset, like 10, 20, 30 etc.
+     * @param optional offset: Page offset, like 10, 20, 30 etc.
      * @return A JSON Object
      * @throws RequestException
      */
-    public JSONObject userSearch(String query, Integer offset) throws RequestException {
+    public JSONObject userSearch(String query, Args optional) throws RequestException {
         return requestBy("UserSearch/search")
-        	.with(new Args().add("query", query).add("offset", offset.toString()))
+        	.with(new Args().add("query", query).add(optional))
         	.in(HttpMethod.GET).thenJsonObject();
     }
 	
