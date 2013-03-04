@@ -1,4 +1,4 @@
-package com.google.jplurk_oauth.module;
+package com.google.jplurk_oauth.ext;
 
 import com.google.jplurk_oauth.skeleton.AbstractModule;
 import com.google.jplurk_oauth.skeleton.Args;
