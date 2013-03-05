@@ -7,8 +7,10 @@ import com.google.jplurk_oauth.skeleton.RequestException;
 
 /**
  * @author Askeing
- * The general API caller can call APIs directly by API path.
- * It get more flexible to support new APIs in the future. 
+ * The general API caller can call APIs directly by API path.<br/>
+ * It get more flexible to support new APIs is not implemented in modules.
+ * 
+ * <p><strong>NOTE</strong>: We suggest ONLY use this class when there is new API which is not implemented in modules.</p> 
  */
 public class GeneralCaller extends AbstractModule {
 
