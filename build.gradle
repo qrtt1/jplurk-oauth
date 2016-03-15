@@ -1,0 +1,43 @@
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.3.4'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.scribe:scribe:1.2.2'
+    compile 'org.json:json:20080701'
+    compile 'commons-logging:commons-logging:1.1.1'
+    compile 'commons-httpclient:commons-httpclient:3.1'
+}
+
+
+group = MAVEN_GROUP
+version = LIBRARY_VERSION
+
+publish {
+    userOrg = USER_ORG
+    groupId = MAVEN_GROUP
+    artifactId = MAVEN_ARTIFACT
+    publishVersion = LIBRARY_VERSION
+    desc = DESCRIPTION
+    website = WEBSITE
+    repoName = BINTRAY_REPO
+    bintrayUser = JPLURK_OAUTH_UPLOAD_USER
+    bintrayKey = JPLURK_OAUTH_UPLOAD_KEY
+}
+
