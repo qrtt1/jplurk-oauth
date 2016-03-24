@@ -16,3 +16,7 @@ dependencies {
     compile 'com.google.jplurk:jplurk-oauth:2.0.11'
 }
 ```
+
+## Usage and Design Notes
+
+Please visit our [wiki page](https://github.com/qrtt1/jplurk-oauth/wiki)
