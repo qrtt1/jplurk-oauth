@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.google.jplurk:jplurk-oauth:2.0.11'
+    compile 'com.google.jplurk:jplurk-oauth:2.0.12'
 }
 ```
 
