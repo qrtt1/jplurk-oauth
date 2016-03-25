@@ -7,9 +7,6 @@ In gradle build script, add the following repositories and the dependencies of t
 ```groovy
 repositories {
     jcenter()
-    maven {
-        url  "http://dl.bintray.com/qrtt1/jplurk-maven"
-    }
 }
 
 dependencies {
