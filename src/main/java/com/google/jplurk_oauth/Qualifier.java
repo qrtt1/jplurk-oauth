@@ -63,7 +63,16 @@ public enum Qualifier {
 	HATES("hates"),
 
 	// "gives" 給
-	GIVES("gives")
+	GIVES("gives"),
+	
+	// "plays" 玩
+	PLAYS("plays"),
+
+	// "draws" 畫
+	DRAWS("draws"),
+
+	// "writes" 寫
+	WRITES("writes")
 	;
 
 	private String qualifier;
