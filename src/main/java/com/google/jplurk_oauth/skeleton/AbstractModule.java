@@ -2,7 +2,7 @@ package com.google.jplurk_oauth.skeleton;
 
 public abstract class AbstractModule {
 
-    public static final String API_URL_PREFIX = "http://www.plurk.com";
+    public static final String API_URL_PREFIX = "https://www.plurk.com";
 
     private PlurkOAuth plurkOAuth;
 
