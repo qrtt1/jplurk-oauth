@@ -57,9 +57,9 @@ public class Alerts extends AbstractModule {
 	 * @return <code>{"success_text": "ok"}</code>
 	 * @throws RequestException
 	 */
-	public JSONArray addAllAsFan() throws RequestException {
+	public JSONObject addAllAsFan() throws RequestException {
         return requestBy("addAllAsFan")
-            .withoutArgs().in(HttpMethod.GET).thenJsonArray();
+            .withoutArgs().in(HttpMethod.GET).thenJsonObject();
     }
 	
 	/**
@@ -67,9 +67,9 @@ public class Alerts extends AbstractModule {
 	 * @return <code>{"success_text": "ok"}</code>
 	 * @throws RequestException
 	 */
-	public JSONArray addAllAsFriends() throws RequestException {
+	public JSONObject addAllAsFriends() throws RequestException {
         return requestBy("addAllAsFriends")
-            .withoutArgs().in(HttpMethod.GET).thenJsonArray();
+            .withoutArgs().in(HttpMethod.GET).thenJsonObject();
     }
     
 	/**
