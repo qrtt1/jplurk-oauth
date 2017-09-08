@@ -92,7 +92,16 @@ public class FriendsFans extends AbstractModule {
             .with(new Args().add("user_id", user_id).add("follow", follow))
             .in(HttpMethod.GET).thenJsonObject();
     }
-    
+
+    public JSONObject setFollowingReplurk(Long user_id, boolean follow) throws RequestException {
+        return setFollowingReplurk(user_id.toString(), follow);
+    }
+
+    public JSONObject setFollowingReplurk(String user_id, boolean follow) throws RequestException {
+        return requestBy("setFollowingReplurk")
+                .with(new Args().add("user_id", user_id).add("follow", follow))
+                .in(HttpMethod.GET).thenJsonObject();
+    }
     
     public JSONObject getCompletion() throws RequestException {
         return requestBy("getCompletion")

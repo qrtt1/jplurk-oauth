@@ -1,5 +1,6 @@
 package com.google.jplurk_oauth.module;
 
+import com.google.jplurk_oauth.skeleton.Args;
 import org.json.JSONObject;
 
 import com.google.jplurk_oauth.skeleton.AbstractModule;
@@ -17,6 +18,24 @@ public class Emoticons extends AbstractModule {
     public JSONObject get() throws RequestException {
         return requestBy("get")
             .withoutArgs().in(HttpMethod.GET).thenJsonObject();
+    }
+
+    public JSONObject addFromURL(String url) throws RequestException {
+        return requestBy("addFromURL")
+                .with(new Args().add("url", url))
+                .in(HttpMethod.GET).thenJsonObject();
+    }
+
+    public JSONObject addFromURL(String url, Args optional) throws RequestException {
+        return requestBy("addFromURL")
+                .with(new Args().add("url", url).add(optional))
+                .in(HttpMethod.GET).thenJsonObject();
+    }
+
+    public JSONObject delete(String url) throws RequestException {
+        return requestBy("delete")
+                .with(new Args().add("url", url))
+                .in(HttpMethod.GET).thenJsonObject();
     }
     
     @Override
