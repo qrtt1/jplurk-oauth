@@ -1,4 +1,3 @@
-apply plugin: 'com.novoda.bintray-release'
 
 buildscript {
     repositories {
@@ -27,25 +26,6 @@ dependencies {
 
 
 
-apply plugin: 'maven-publish'
-group = MAVEN_GROUP
-version = LIBRARY_VERSION
-
-publish {
-    userOrg = USER_ORG
-    groupId = MAVEN_GROUP
-    artifactId = MAVEN_ARTIFACT
-    publishVersion = LIBRARY_VERSION
-    desc = DESCRIPTION
-    website = WEBSITE
-    repoName = BINTRAY_REPO
-}
-
-gradle.taskGraph.whenReady {taskGraph ->
-    if (taskGraph.hasTask(bintrayUpload)) {
-        publish {
-            bintrayUser = JPLURK_OAUTH_UPLOAD_USER
-            bintrayKey = JPLURK_OAUTH_UPLOAD_KEY
-        }
-    }
+if (System.properties['release'] != null) {
+  apply from: 'release.gradle'
 }

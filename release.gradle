@@ -1,0 +1,15 @@
+apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'maven-publish'
+group = MAVEN_GROUP
+version = LIBRARY_VERSION
+publish {
+    userOrg = USER_ORG
+    groupId = MAVEN_GROUP
+    artifactId = MAVEN_ARTIFACT
+    publishVersion = LIBRARY_VERSION
+    desc = DESCRIPTION
+    website = WEBSITE
+    repoName = BINTRAY_REPO
+    bintrayUser = JPLURK_OAUTH_UPLOAD_USER
+    bintrayKey = JPLURK_OAUTH_UPLOAD_KEY
+}
