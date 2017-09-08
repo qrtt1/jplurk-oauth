@@ -12,7 +12,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
-apply plugin: 'maven-publish'
 
 repositories {
     jcenter()
@@ -23,9 +22,12 @@ dependencies {
     compile 'org.json:json:20080701'
     compile 'commons-logging:commons-logging:1.1.1'
     compile 'commons-httpclient:commons-httpclient:3.1'
+    testCompile 'junit:junit:4.12'
 }
 
 
+
+apply plugin: 'maven-publish'
 group = MAVEN_GROUP
 version = LIBRARY_VERSION
 
@@ -37,7 +39,13 @@ publish {
     desc = DESCRIPTION
     website = WEBSITE
     repoName = BINTRAY_REPO
-    bintrayUser = JPLURK_OAUTH_UPLOAD_USER
-    bintrayKey = JPLURK_OAUTH_UPLOAD_KEY
 }
 
+gradle.taskGraph.whenReady {taskGraph ->
+    if (taskGraph.hasTask(bintrayUpload)) {
+        publish {
+            bintrayUser = JPLURK_OAUTH_UPLOAD_USER
+            bintrayKey = JPLURK_OAUTH_UPLOAD_KEY
+        }
+    }
+}

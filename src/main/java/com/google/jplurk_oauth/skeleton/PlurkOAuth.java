@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.multipart.FilePart;
@@ -142,6 +143,24 @@ public class PlurkOAuth {
             post.releaseConnection();
         }
         return body;
+    }
+
+    public static class PlurkOAuthBuilder {
+        public static PlurkOAuth builderFromEnv() {
+            return new PlurkOAuth(
+                    value("appKey"),
+                    value("appSecret"),
+                    value("token"),
+                    value("tokenSecret"));
+        }
+
+        private static String value(String key) {
+            String value = System.getenv(key);
+            if (value == null || value.trim().isEmpty()) {
+                throw new IllegalArgumentException("cannot find the variable[" + key + "] in environment variables");
+            }
+            return value;
+        }
     }
 
 }
