@@ -8,6 +8,7 @@ os:
 
 branches:
   only:
+    - master
     - dev
 
 cache:
