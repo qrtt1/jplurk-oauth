@@ -1,5 +1,4 @@
 ![](https://api.travis-ci.org/qrtt1/jplurk-oauth.svg?branch=master)
-![](https://api.travis-ci.org/qrtt1/jplurk-oauth.svg?branch=dev)
 
 JPlurk-OAuth is the Plurk API implementation for Plurk API 2.0.
 
@@ -13,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.google.jplurk:jplurk-oauth:2.0.18'
+    compile 'com.google.jplurk:jplurk-oauth:2.0.20'
 }
 ```
 
