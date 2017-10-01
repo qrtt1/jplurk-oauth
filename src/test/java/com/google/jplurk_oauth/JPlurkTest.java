@@ -1,7 +1,6 @@
 package com.google.jplurk_oauth;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.json.JSONArray;
