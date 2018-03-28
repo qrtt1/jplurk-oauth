@@ -43,7 +43,7 @@ public class Timeline extends AbstractModule {
     }
 
     public JSONObject getPublicPlurks(Long userId) throws RequestException {
-        return getPublicPlurks(userId);
+        return getPublicPlurks(userId, null);
     }
     
     public JSONObject getPublicPlurks(Long userId, Args optional) throws RequestException {

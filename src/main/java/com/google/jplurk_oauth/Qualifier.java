@@ -75,7 +75,16 @@ public enum Qualifier {
     DRAWS("draws"),
 
     // "writes" 寫
-    WRITES("writes");
+    WRITES("writes"),
+
+    // "sells" 賣
+    SELLS("sells"),
+
+    // "buys" 買
+    BUYS("buys"),
+
+    // "eats" 吃
+    EATS("eats");
 
     private static Log logger = LogFactory.getLog(Qualifier.class);
     private String qualifier;
