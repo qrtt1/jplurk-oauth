@@ -37,16 +37,16 @@ public class Realtime extends AbstractModule {
     }
     
     /**
-     * Do requests to this unqiue channel in order to get notifications.
-     * @param comet_server
+     * Do requests to this unique channel in order to get notifications.
+     * @param cometServer
      * @return
      * @throws RequestException
      */
-    public String cometUserChannel(String comet_server) throws RequestException {
-    	return requestSpecificURL(comet_server, new Args())
-    			.in(HttpMethod.GET).thenStringObject();
+    public String cometUserChannel(String cometServer) throws RequestException {
+        return requestSpecificURL(cometServer, new Args())
+                .in(HttpMethod.GET).thenStringObject();
     }
-    
+
     @Override
     protected String getModulePath() {
         return "/APP/Realtime";
